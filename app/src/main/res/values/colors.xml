@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#85461e</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#85461e</color>
+    <color name="caramel">#85461e</color>
+    <color name="caramelLight">#ffd59a</color>
+</resources>
