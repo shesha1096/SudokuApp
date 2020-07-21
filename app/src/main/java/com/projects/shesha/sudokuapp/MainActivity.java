@@ -61,11 +61,13 @@ public class MainActivity extends AppCompatActivity {
                         switch (radioButton.getText().toString())
                         {
                             case "Beginner":
-                                startActivity(new Intent(MainActivity.this,SudokuActivity.class));
+                                sendToNextActivity("Beginner");
                                 break;
                             case "Amateur":
+                                sendToNextActivity("Amateur");
                                 break;
                             case "Expert":
+                                sendToNextActivity("Expert");
                                 break;
                         }
                     }
@@ -73,5 +75,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void sendToNextActivity(String difficultyLevel) {
+        Intent intent = new Intent(MainActivity.this,SudokuActivity.class);
+        intent.putExtra("Difficulty_level",difficultyLevel);
+        startActivity(intent);
     }
 }
