@@ -2,13 +2,17 @@ package com.projects.shesha.sudokuapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class SudokuActivity extends AppCompatActivity {
     private SudokuSolver sudokuSolver;
@@ -24,12 +28,15 @@ public class SudokuActivity extends AppCompatActivity {
     int[][] userEnteredNumbers;
     private Button showSolutionBtn;
     private int[][] board;
+    private int cellValueCounter;
+    private ArrayList<Button> buttonList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sudoku);
         showSolutionBtn = (Button) findViewById(R.id.solutionBtnId);
+        buttonList = new ArrayList<>();
         sudokuSolver = new SudokuSolver(SudokuSolver.GRID_TO_SOLVE);
         sudokuSolver.solve();
         initializeButtons();
@@ -40,6 +47,7 @@ public class SudokuActivity extends AppCompatActivity {
         switch (difficultyLevel)
         {
             case "Beginner":
+                cellValueCounter = 5;
                 button1.setText(board[0][0] + "");
                 userEnteredNumbers[0][0] = board[0][0];
                 button9.setText(board[0][8] + "");
@@ -52,6 +60,7 @@ public class SudokuActivity extends AppCompatActivity {
                 userEnteredNumbers[3][5] = board[3][5];
                 break;
             case "Amateur":
+                cellValueCounter = 3;
                 button1.setText(board[0][0] + "");
                 userEnteredNumbers[0][0] = board[0][0];
                 button9.setText(board[0][8] + "");
@@ -60,6 +69,7 @@ public class SudokuActivity extends AppCompatActivity {
                 userEnteredNumbers[1][4] = board[1][4];
                 break;
             case "Expert":
+                cellValueCounter = 2;
                 button1.setText(board[0][0] + "");
                 userEnteredNumbers[0][0] = board[0][0];
                 button9.setText(board[0][8] + "");
@@ -69,97 +79,206 @@ public class SudokuActivity extends AppCompatActivity {
         showSolutionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                button1.setText(board[0][0] + "");
-                button2.setText(board[0][1] + "");
-                button3.setText(board[0][2] + "");
-                button4.setText(board[0][3] + "");
-                button5.setText(board[0][4] + "");
-                button6.setText(board[0][5] + "");
-                button7.setText(board[0][6] + "");
-                button8.setText(board[0][7] + "");
-                button9.setText(board[0][8] + "");
-                button10.setText(board[1][0] + "");
-                button11.setText(board[1][1] + "");
-                button12.setText(board[1][2] + "");
-                button13.setText(board[1][3] + "");
-                button14.setText(board[1][4] + "");
-                button15.setText(board[1][5] + "");
-                button16.setText(board[1][6] + "");
-                button17.setText(board[1][7] + "");
-                button18.setText(board[1][8] + "");
-                button19.setText(board[2][0] + "");
-                button20.setText(board[2][1] + "");
-                button21.setText(board[2][2] + "");
-                button22.setText(board[2][3] + "");
-                button23.setText(board[2][4] + "");
-                button24.setText(board[2][5] + "");
-                button25.setText(board[2][6] + "");
-                button26.setText(board[2][7] + "");
-                button27.setText(board[2][8] + "");
-                button28.setText(board[3][0] + "");
-                button29.setText(board[3][1] + "");
-                button30.setText(board[3][2] + "");
-                button31.setText(board[3][3] + "");
-                button32.setText(board[3][4] + "");
-                button33.setText(board[3][5] + "");
-                button34.setText(board[3][6] + "");
-                button35.setText(board[3][7] + "");
-                button36.setText(board[3][8] + "");
-                button37.setText(board[4][0] + "");
-                button38.setText(board[4][1] + "");
-                button39.setText(board[4][2] + "");
-                button40.setText(board[4][3] + "");
-                button41.setText(board[4][4] + "");
-                button42.setText(board[4][5] + "");
-                button43.setText(board[4][6] + "");
-                button44.setText(board[4][7] + "");
-                button45.setText(board[4][8] + "");
-                button46.setText(board[5][0] + "");
-                button47.setText(board[5][1] + "");
-                button48.setText(board[5][2] + "");
-                button49.setText(board[5][3] + "");
-                button50.setText(board[5][4] + "");
-                button51.setText(board[5][5] + "");
-                button52.setText(board[5][6] + "");
-                button53.setText(board[5][7] + "");
-                button54.setText(board[5][8] + "");
-                button55.setText(board[6][0] + "");
-                button56.setText(board[6][1] + "");
-                button57.setText(board[6][2] + "");
-                button58.setText(board[6][3] + "");
-                button59.setText(board[6][4] + "");
-                button60.setText(board[6][5] + "");
-                button61.setText(board[6][6] + "");
-                button62.setText(board[6][7] + "");
-                button63.setText(board[6][8] + "");
-                button64.setText(board[7][0] + "");
-                button65.setText(board[7][1] + "");
-                button66.setText(board[7][2] + "");
-                button67.setText(board[7][3] + "");
-                button68.setText(board[7][4] + "");
-                button69.setText(board[7][5] + "");
-                button70.setText(board[7][6] + "");
-                button71.setText(board[7][7] + "");
-                button72.setText(board[7][8] + "");
-                button73.setText(board[8][0] + "");
-                button74.setText(board[8][1] + "");
-                button75.setText(board[8][2] + "");
-                button76.setText(board[8][3] + "");
-                button77.setText(board[8][4] + "");
-                button78.setText(board[8][5] + "");
-                button79.setText(board[8][6] + "");
-                button80.setText(board[8][7] + "");
-                button81.setText(board[8][8] + "");
-                checkForCorrectness();
+                prepareSolution();
+
             }
         });
 
 
     }
 
+    private void prepareSolution() {
+        button1.setText(board[0][0] + "");
+        button2.setText(board[0][1] + "");
+        button3.setText(board[0][2] + "");
+        button4.setText(board[0][3] + "");
+        button5.setText(board[0][4] + "");
+        button6.setText(board[0][5] + "");
+        button7.setText(board[0][6] + "");
+        button8.setText(board[0][7] + "");
+        button9.setText(board[0][8] + "");
+        button10.setText(board[1][0] + "");
+        button11.setText(board[1][1] + "");
+        button12.setText(board[1][2] + "");
+        button13.setText(board[1][3] + "");
+        button14.setText(board[1][4] + "");
+        button15.setText(board[1][5] + "");
+        button16.setText(board[1][6] + "");
+        button17.setText(board[1][7] + "");
+        button18.setText(board[1][8] + "");
+        button19.setText(board[2][0] + "");
+        button20.setText(board[2][1] + "");
+        button21.setText(board[2][2] + "");
+        button22.setText(board[2][3] + "");
+        button23.setText(board[2][4] + "");
+        button24.setText(board[2][5] + "");
+        button25.setText(board[2][6] + "");
+        button26.setText(board[2][7] + "");
+        button27.setText(board[2][8] + "");
+        button28.setText(board[3][0] + "");
+        button29.setText(board[3][1] + "");
+        button30.setText(board[3][2] + "");
+        button31.setText(board[3][3] + "");
+        button32.setText(board[3][4] + "");
+        button33.setText(board[3][5] + "");
+        button34.setText(board[3][6] + "");
+        button35.setText(board[3][7] + "");
+        button36.setText(board[3][8] + "");
+        button37.setText(board[4][0] + "");
+        button38.setText(board[4][1] + "");
+        button39.setText(board[4][2] + "");
+        button40.setText(board[4][3] + "");
+        button41.setText(board[4][4] + "");
+        button42.setText(board[4][5] + "");
+        button43.setText(board[4][6] + "");
+        button44.setText(board[4][7] + "");
+        button45.setText(board[4][8] + "");
+        button46.setText(board[5][0] + "");
+        button47.setText(board[5][1] + "");
+        button48.setText(board[5][2] + "");
+        button49.setText(board[5][3] + "");
+        button50.setText(board[5][4] + "");
+        button51.setText(board[5][5] + "");
+        button52.setText(board[5][6] + "");
+        button53.setText(board[5][7] + "");
+        button54.setText(board[5][8] + "");
+        button55.setText(board[6][0] + "");
+        button56.setText(board[6][1] + "");
+        button57.setText(board[6][2] + "");
+        button58.setText(board[6][3] + "");
+        button59.setText(board[6][4] + "");
+        button60.setText(board[6][5] + "");
+        button61.setText(board[6][6] + "");
+        button62.setText(board[6][7] + "");
+        button63.setText(board[6][8] + "");
+        button64.setText(board[7][0] + "");
+        button65.setText(board[7][1] + "");
+        button66.setText(board[7][2] + "");
+        button67.setText(board[7][3] + "");
+        button68.setText(board[7][4] + "");
+        button69.setText(board[7][5] + "");
+        button70.setText(board[7][6] + "");
+        button71.setText(board[7][7] + "");
+        button72.setText(board[7][8] + "");
+        button73.setText(board[8][0] + "");
+        button74.setText(board[8][1] + "");
+        button75.setText(board[8][2] + "");
+        button76.setText(board[8][3] + "");
+        button77.setText(board[8][4] + "");
+        button78.setText(board[8][5] + "");
+        button79.setText(board[8][6] + "");
+        button80.setText(board[8][7] + "");
+        button81.setText(board[8][8] + "");
+        buttonList.add(button1);
+        buttonList.add(button2);
+        buttonList.add(button3);
+        buttonList.add(button4);
+        buttonList.add(button5);
+        buttonList.add(button6);
+        buttonList.add(button7);
+        buttonList.add(button8);
+        buttonList.add(button9);
+        buttonList.add(button10);
+        buttonList.add(button11);
+        buttonList.add(button12);
+        buttonList.add(button13);
+        buttonList.add(button14);
+        buttonList.add(button15);
+        buttonList.add(button16);
+        buttonList.add(button17);
+        buttonList.add(button18);
+        buttonList.add(button19);
+        buttonList.add(button20);
+        buttonList.add(button21);
+        buttonList.add(button22);
+        buttonList.add(button23);
+        buttonList.add(button24);
+        buttonList.add(button25);
+        buttonList.add(button26);
+        buttonList.add(button27);
+        buttonList.add(button28);
+        buttonList.add(button29);
+        buttonList.add(button30);
+        buttonList.add(button31);
+        buttonList.add(button32);
+        buttonList.add(button33);
+        buttonList.add(button34);
+        buttonList.add(button35);
+        buttonList.add(button36);
+        buttonList.add(button37);
+        buttonList.add(button38);
+        buttonList.add(button39);
+        buttonList.add(button40);
+        buttonList.add(button41);
+        buttonList.add(button42);
+        buttonList.add(button43);
+        buttonList.add(button44);
+        buttonList.add(button45);
+        buttonList.add(button46);
+        buttonList.add(button47);
+        buttonList.add(button48);
+        buttonList.add(button49);
+        buttonList.add(button50);
+        buttonList.add(button51);
+        buttonList.add(button52);
+        buttonList.add(button53);
+        buttonList.add(button54);
+        buttonList.add(button55);
+        buttonList.add(button56);
+        buttonList.add(button57);
+        buttonList.add(button58);
+        buttonList.add(button59);
+        buttonList.add(button60);
+        buttonList.add(button61);
+        buttonList.add(button62);
+        buttonList.add(button63);
+        buttonList.add(button64);
+        buttonList.add(button65);
+        buttonList.add(button66);
+        buttonList.add(button67);
+        buttonList.add(button68);
+        buttonList.add(button69);
+        buttonList.add(button70);
+        buttonList.add(button71);
+        buttonList.add(button72);
+        buttonList.add(button73);
+        buttonList.add(button74);
+        buttonList.add(button75);
+        buttonList.add(button76);
+        buttonList.add(button77);
+        buttonList.add(button78);
+        buttonList.add(button79);
+        buttonList.add(button80);
+        buttonList.add(button81);
+        checkForCorrectness();
+    }
+
     private void checkForCorrectness() {
+        int counter = 0;
+        for (int i = 0; i < board.length; i++)
+        {
+            for (int j = 0; j < board.length; j++)
+            {
+                if (board[i][j] == userEnteredNumbers[i][j])
+                {
+                    cellValueCounter++;
+                    buttonList.get(counter).setBackgroundResource(R.color.darkGreen);
+                }
+                else if (userEnteredNumbers[i][j] == 0)
+                {
+                    buttonList.get(counter).setBackgroundResource(R.color.caramelLight);
+                }
+                else
+                {
+                    buttonList.get(counter).setBackgroundResource(R.color.redLight);
+                }
+                counter++;
+            }
+        }
+        /*
         if (board[0][0] == userEnteredNumbers[0][0])
         {
+            cellValueCounter++;
             button1.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[0][0] == 0)
@@ -172,6 +291,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[0][1] == userEnteredNumbers[0][1])
         {
+            cellValueCounter++;
             button2.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[0][1] == 0)
@@ -184,6 +304,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[0][2] == userEnteredNumbers[0][2])
         {
+            cellValueCounter++;
             button3.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[0][2] == 0)
@@ -196,6 +317,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[0][3] == userEnteredNumbers[0][3])
         {
+            cellValueCounter++;
             button4.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[0][3] == 0)
@@ -208,6 +330,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[0][4] == userEnteredNumbers[0][4])
         {
+            cellValueCounter++;
             button5.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[0][4] == 0)
@@ -220,6 +343,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[0][5] == userEnteredNumbers[0][5])
         {
+            cellValueCounter++;
             button6.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[0][5] == 0)
@@ -232,6 +356,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[0][6] == userEnteredNumbers[0][6])
         {
+            cellValueCounter++;
             button7.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[0][6] == 0)
@@ -244,6 +369,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[0][7] == userEnteredNumbers[0][7])
         {
+            cellValueCounter++;
             button8.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[0][7] == 0)
@@ -256,6 +382,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[0][8] == userEnteredNumbers[0][8])
         {
+            cellValueCounter++;
             button9.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[0][8] == 0)
@@ -268,6 +395,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[1][0] == userEnteredNumbers[1][0])
         {
+            cellValueCounter++;
             button10.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[1][0] == 0)
@@ -280,6 +408,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[1][1] == userEnteredNumbers[1][1])
         {
+            cellValueCounter++;
             button11.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[1][1] == 0)
@@ -292,6 +421,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[1][2] == userEnteredNumbers[1][2])
         {
+            cellValueCounter++;
             button12.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[1][2] == 0)
@@ -304,6 +434,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[1][3] == userEnteredNumbers[1][3])
         {
+            cellValueCounter++;
             button13.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[1][3] == 0)
@@ -316,6 +447,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[1][4] == userEnteredNumbers[1][4])
         {
+            cellValueCounter++;
             button14.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[1][4] == 0)
@@ -327,7 +459,7 @@ public class SudokuActivity extends AppCompatActivity {
             button14.setBackgroundResource(R.color.redLight);
         }
         if (board[1][5] == userEnteredNumbers[1][5])
-        {
+        {cellValueCounter++;
             button15.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[1][5] == 0)
@@ -340,6 +472,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[1][6] == userEnteredNumbers[1][6])
         {
+            cellValueCounter++;
             button16.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[1][6] == 0)
@@ -352,6 +485,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[1][7] == userEnteredNumbers[1][7])
         {
+            cellValueCounter++;
             button17.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[1][7] == 0)
@@ -364,6 +498,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[1][8] == userEnteredNumbers[1][8])
         {
+            cellValueCounter++;
             button18.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[1][8] == 0)
@@ -376,6 +511,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[2][0] == userEnteredNumbers[2][0])
         {
+            cellValueCounter++;
             button19.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[2][0] == 0)
@@ -388,6 +524,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[2][1] == userEnteredNumbers[2][1])
         {
+            cellValueCounter++;
             button20.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[2][1] == 0)
@@ -400,6 +537,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[2][2] == userEnteredNumbers[2][2])
         {
+            cellValueCounter++;
             button21.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[2][2] == 0)
@@ -412,6 +550,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[2][3] == userEnteredNumbers[2][3])
         {
+            cellValueCounter++;
             button22.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[2][3] == 0)
@@ -424,6 +563,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[2][4] == userEnteredNumbers[2][4])
         {
+            cellValueCounter++;
             button23.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[2][4] == 0)
@@ -436,6 +576,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[2][5] == userEnteredNumbers[2][5])
         {
+            cellValueCounter++;
             button24.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[2][5] == 0)
@@ -448,6 +589,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[2][6] == userEnteredNumbers[2][6])
         {
+            cellValueCounter++;
             button25.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[2][6] == 0)
@@ -460,6 +602,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[2][7] == userEnteredNumbers[2][7])
         {
+            cellValueCounter++;
             button26.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[2][7] == 0)
@@ -472,6 +615,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[2][8] == userEnteredNumbers[2][8])
         {
+            cellValueCounter++;
             button27.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[2][8] == 0)
@@ -484,6 +628,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[3][0] == userEnteredNumbers[3][0])
         {
+            cellValueCounter++;
             button28.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[3][0] == 0)
@@ -496,6 +641,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[3][1] == userEnteredNumbers[3][1])
         {
+            cellValueCounter++;
             button29.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[3][1] == 0)
@@ -508,6 +654,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[3][2] == userEnteredNumbers[3][2])
         {
+            cellValueCounter++;
             button30.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[3][2] == 0)
@@ -520,6 +667,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[3][3] == userEnteredNumbers[3][3])
         {
+            cellValueCounter++;
             button31.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[3][3] == 0)
@@ -532,6 +680,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[3][4] == userEnteredNumbers[3][4])
         {
+            cellValueCounter++;
             button32.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[3][4] == 0)
@@ -544,6 +693,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[3][5] == userEnteredNumbers[3][5])
         {
+            cellValueCounter++;
             button33.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[3][5] == 0)
@@ -556,6 +706,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[3][6] == userEnteredNumbers[3][6])
         {
+            cellValueCounter++;
             button34.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[3][6] == 0)
@@ -568,6 +719,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[3][7] == userEnteredNumbers[3][7])
         {
+            cellValueCounter++;
             button35.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[3][7] == 0)
@@ -580,6 +732,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[3][8] == userEnteredNumbers[3][8])
         {
+            cellValueCounter++;
             button36.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[3][8] == 0)
@@ -592,6 +745,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[4][0] == userEnteredNumbers[4][0])
         {
+            cellValueCounter++;
             button37.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[4][0] == 0)
@@ -604,6 +758,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[4][1] == userEnteredNumbers[4][1])
         {
+            cellValueCounter++;
             button38.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[4][1] == 0)
@@ -616,6 +771,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[4][2] == userEnteredNumbers[4][2])
         {
+            cellValueCounter++;
             button39.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[4][2] == 0)
@@ -628,6 +784,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[4][3] == userEnteredNumbers[4][3])
         {
+            cellValueCounter++;
             button40.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[4][3] == 0)
@@ -640,6 +797,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[4][4] == userEnteredNumbers[4][4])
         {
+            cellValueCounter++;
             button41.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[4][4] == 0)
@@ -652,6 +810,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[4][5] == userEnteredNumbers[4][5])
         {
+            cellValueCounter++;
             button42.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[4][5] == 0)
@@ -664,6 +823,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[4][6] == userEnteredNumbers[4][6])
         {
+            cellValueCounter++;
             button43.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[4][6] == 0)
@@ -676,6 +836,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[4][7] == userEnteredNumbers[4][7])
         {
+            cellValueCounter++;
             button44.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[4][7] == 0)
@@ -688,6 +849,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[4][8] == userEnteredNumbers[4][8])
         {
+            cellValueCounter++;
             button45.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[4][8] == 0)
@@ -700,6 +862,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[5][0] == userEnteredNumbers[5][0])
         {
+            cellValueCounter++;
             button46.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[5][0] == 0)
@@ -712,6 +875,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[5][1] == userEnteredNumbers[5][1])
         {
+            cellValueCounter++;
             button47.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[5][1] == 0)
@@ -724,6 +888,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[5][2] == userEnteredNumbers[5][2])
         {
+            cellValueCounter++;
             button48.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[5][2] == 0)
@@ -736,6 +901,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[5][3] == userEnteredNumbers[5][3])
         {
+            cellValueCounter++;
             button49.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[5][3] == 0)
@@ -748,6 +914,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[5][4] == userEnteredNumbers[5][4])
         {
+            cellValueCounter++;
             button50.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[5][4] == 0)
@@ -760,6 +927,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[5][5] == userEnteredNumbers[5][5])
         {
+            cellValueCounter++;
             button51.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[5][5] == 0)
@@ -772,6 +940,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[5][6] == userEnteredNumbers[5][6])
         {
+            cellValueCounter++;
             button52.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[5][6] == 0)
@@ -784,6 +953,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[5][7] == userEnteredNumbers[5][7])
         {
+            cellValueCounter++;
             button53.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[5][7] == 0)
@@ -796,6 +966,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[5][8] == userEnteredNumbers[5][8])
         {
+            cellValueCounter++;
             button54.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[5][8] == 0)
@@ -808,6 +979,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[6][0] == userEnteredNumbers[6][0])
         {
+            cellValueCounter++;
             button55.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[6][0] == 0)
@@ -820,6 +992,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[6][1] == userEnteredNumbers[6][1])
         {
+            cellValueCounter++;
             button56.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[6][1] == 0)
@@ -832,6 +1005,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[6][2] == userEnteredNumbers[6][2])
         {
+            cellValueCounter++;
             button57.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[6][2] == 0)
@@ -844,6 +1018,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[6][3] == userEnteredNumbers[6][3])
         {
+            cellValueCounter++;
             button58.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[6][3] == 0)
@@ -856,6 +1031,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[6][4] == userEnteredNumbers[6][4])
         {
+            cellValueCounter++;
             button59.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[6][4] == 0)
@@ -868,6 +1044,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[6][5] == userEnteredNumbers[6][5])
         {
+            cellValueCounter++;
             button60.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[6][5] == 0)
@@ -880,6 +1057,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[6][6] == userEnteredNumbers[6][6])
         {
+            cellValueCounter++;
             button61.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[6][6] == 0)
@@ -892,6 +1070,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[6][7] == userEnteredNumbers[6][7])
         {
+            cellValueCounter++;
             button62.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[6][7] == 0)
@@ -904,6 +1083,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[6][8] == userEnteredNumbers[6][8])
         {
+            cellValueCounter++;
             button63.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[6][8] == 0)
@@ -916,6 +1096,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[7][0] == userEnteredNumbers[7][0])
         {
+            cellValueCounter++;
             button64.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[7][0] == 0)
@@ -928,6 +1109,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[7][1] == userEnteredNumbers[7][1])
         {
+            cellValueCounter++;
             button65.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[7][1] == 0)
@@ -940,6 +1122,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[7][2] == userEnteredNumbers[7][2])
         {
+            cellValueCounter++;
             button66.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[7][2] == 0)
@@ -952,6 +1135,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[7][3] == userEnteredNumbers[7][3])
         {
+            cellValueCounter++;
             button67.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[7][3] == 0)
@@ -964,6 +1148,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[7][4] == userEnteredNumbers[7][4])
         {
+            cellValueCounter++;
             button68.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[7][4] == 0)
@@ -976,6 +1161,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[7][5] == userEnteredNumbers[7][5])
         {
+            cellValueCounter++;
             button69.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[7][5] == 0)
@@ -988,6 +1174,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[7][6] == userEnteredNumbers[7][6])
         {
+            cellValueCounter++;
             button70.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[7][6] == 0)
@@ -1000,6 +1187,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[7][7] == userEnteredNumbers[7][7])
         {
+            cellValueCounter++;
             button71.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[7][7] == 0)
@@ -1012,6 +1200,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[7][8] == userEnteredNumbers[7][8])
         {
+            cellValueCounter++;
             button72.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[7][8] == 0)
@@ -1024,6 +1213,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[8][0] == userEnteredNumbers[8][0])
         {
+            cellValueCounter++;
             button73.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[8][0] == 0)
@@ -1036,6 +1226,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[8][1] == userEnteredNumbers[8][1])
         {
+            cellValueCounter++;
             button74.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[8][1] == 0)
@@ -1048,6 +1239,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[8][2] == userEnteredNumbers[8][2])
         {
+            cellValueCounter++;
             button75.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[8][2] == 0)
@@ -1060,6 +1252,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[8][3] == userEnteredNumbers[8][3])
         {
+            cellValueCounter++;
             button76.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[8][3] == 0)
@@ -1072,6 +1265,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[8][4] == userEnteredNumbers[8][4])
         {
+            cellValueCounter++;
             button77.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[8][4] == 0)
@@ -1084,6 +1278,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[8][5] == userEnteredNumbers[8][5])
         {
+            cellValueCounter++;
             button78.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[8][5] == 0)
@@ -1096,6 +1291,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[8][6] == userEnteredNumbers[8][6])
         {
+            cellValueCounter++;
             button79.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[8][6] == 0)
@@ -1108,6 +1304,7 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[8][7] == userEnteredNumbers[8][7])
         {
+            cellValueCounter++;
             button80.setBackgroundResource(R.color.darkGreen);
         }
         else if (userEnteredNumbers[8][7] == 0)
@@ -1120,7 +1317,9 @@ public class SudokuActivity extends AppCompatActivity {
         }
         if (board[8][8] == userEnteredNumbers[8][8])
         {
+            cellValueCounter++;
             button81.setBackgroundResource(R.color.darkGreen);
+
         }
         else if (userEnteredNumbers[8][8] == 0)
         {
@@ -1130,7 +1329,31 @@ public class SudokuActivity extends AppCompatActivity {
         {
             button81.setBackgroundResource(R.color.redLight);
         }
+         */
+        displayCorrectnessScore(cellValueCounter);
 
+    }
+
+    private void displayCorrectnessScore(int cellValueCounter) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SudokuActivity.this);
+        alertDialogBuilder.setTitle("Your Final Score!");
+        Log.d("COUNTER",String.valueOf(cellValueCounter));
+        if (cellValueCounter / 81 == 1)
+        {
+            alertDialogBuilder.setMessage("CONGRATULATIONS! YOU HAVE GOT THE ENTIRE GAME RIGHT!");
+        }
+        else
+        {
+            alertDialogBuilder.setMessage("YOU HAVE GOT A CORRECTNESS SCORE OF: " + (cellValueCounter/81.00)*100 + "%");
+        }
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
 
@@ -1147,9 +1370,10 @@ public class SudokuActivity extends AppCompatActivity {
 
     private void acceptNumberInput(final Button button, final int rowNumber, final int columnNumber)
     {
+        Log.d("COUNTER",String.valueOf(cellValueCounter/81));
         final Dialog dialog = new Dialog(SudokuActivity.this);
         dialog.setContentView(R.layout.number_input_layout);
-        TextView numberOne = dialog.findViewById(R.id.numberOneInputId);
+        final TextView numberOne = dialog.findViewById(R.id.numberOneInputId);
         TextView numberTwo = dialog.findViewById(R.id.numberTwoInputId);
         TextView numberThree = dialog.findViewById(R.id.numberThreeInputId);
         TextView numberFour = dialog.findViewById(R.id.numberFourInputId);
@@ -1184,6 +1408,7 @@ public class SudokuActivity extends AppCompatActivity {
                 userEnteredNumbers[rowNumber][columnNumber] = 3;
                 button.setText(numberSelected+"");
                 dialog.dismiss();
+
             }
         });
         numberFour.setOnClickListener(new View.OnClickListener() {
@@ -1240,6 +1465,7 @@ public class SudokuActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
 
     }
 

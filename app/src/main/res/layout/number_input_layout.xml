@@ -2,30 +2,35 @@
 <TableLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/caramelLight"
     android:stretchColumns="*">
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <TextView
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp">
+        <Button
             android:text="1"
+            android:background="@color/caramel"
             android:layout_gravity="center"
             android:id="@+id/numberOneInputId"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
-        <TextView
+        <Button
             android:text="2"
             android:layout_gravity="center"
+            android:background="@color/caramel"
             android:id="@+id/numberTwoInputId"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
-        <TextView
+        <Button
         android:text="3"
             android:id="@+id/numberThreeInputId"
             android:layout_gravity="center"
+            android:background="@color/caramel"
         android:textSize="24sp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,28 +39,32 @@
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <TextView
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp">
+        <Button
             android:text="4"
             android:id="@+id/numberFourInputId"
             android:layout_gravity="center"
             android:textSize="24sp"
+            android:background="@color/caramel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
-        <TextView
+        <Button
             android:text="5"
             android:id="@+id/numberFiveInputId"
             android:layout_gravity="center"
             android:textSize="24sp"
+            android:background="@color/caramel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
-        <TextView
+        <Button
         android:text="6"
             android:layout_gravity="center"
             android:id="@+id/numberSixInputId"
         android:textSize="24sp"
+            android:background="@color/caramel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
@@ -64,29 +73,33 @@
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <TextView
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp">
+        <Button
             android:text="7"
             android:id="@+id/numberSevenInputId"
             android:layout_gravity="center"
             android:textSize="24sp"
+            android:background="@color/caramel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
-        <TextView
+        <Button
             android:text="8"
             android:id="@+id/numberEightInputId"
             android:textSize="24sp"
             android:layout_gravity="center"
             android:layout_width="match_parent"
+            android:background="@color/caramel"
             android:layout_height="match_parent"
             />
-        <TextView
+        <Button
         android:text="9"
             android:id="@+id/numberNineInputId"
         android:textSize="24sp"
             android:layout_gravity="center"
         android:layout_width="match_parent"
+            android:background="@color/caramel"
         android:layout_height="match_parent"
         />
 
